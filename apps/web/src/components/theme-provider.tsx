@@ -3,7 +3,7 @@ import * as React from "react"
 import { type Theme } from "@/types/theme"
 import { type ThemeProviderState } from "@/types/themeProviderState"
 import type {ThemeProviderProps} from "@/types/themeProviderProps.ts";
-import type {ResolvedTheme} from "@/types/ResolvedTheme.ts";
+import type {ResolvedTheme} from "@/types/resolvedTheme.ts";
 
 const COLOR_SCHEME_QUERY = "(prefers-color-scheme: dark)"
 const THEME_VALUES: Theme[] = ["dark", "light", "system"]
