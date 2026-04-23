@@ -1,0 +1,17 @@
+{
+  "name": "@workspace/db",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@workspace/models": "workspace:*",
+    "convex": "^1.24.0",
+    "convex-helpers": "^0.1.115"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
