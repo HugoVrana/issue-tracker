@@ -34,7 +34,8 @@
   },
   "scripts": {
     "build": "ray build",
-    "dev": "doppler run -- ray develop",
+    "dev": "ray develop",
+    "prod": "ray build",
     "lint": "ray lint",
     "publish": "npx @raycast/api@latest publish"
   }

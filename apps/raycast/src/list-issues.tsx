@@ -2,6 +2,7 @@ import {
   Action,
   ActionPanel,
   Color,
+  environment,
   Icon,
   List,
   showToast,
@@ -53,7 +54,7 @@ export default function ListIssues() {
   }
 
   return (
-    <List isLoading={isLoading}>
+    <List isLoading={isLoading} navigationTitle={environment.isDevelopment ? "Issues (Dev)" : "Issues"}>
       {issues?.map((issue) => {
         const { label, icon, color } = STATUS[issue.status];
         return (

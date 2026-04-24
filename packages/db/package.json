@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "convex": "doppler run -- npx convex dev",
+    "convex": "npx convex dev",
     "doppler:run": "doppler run -- npx convex dev",
     "doppler:pull": "doppler secrets download --no-file --format env-no-quotes > .env.local",
     "doppler:debug": "doppler run -- node --inspect node_modules/.bin/convex dev"
