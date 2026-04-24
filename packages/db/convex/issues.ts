@@ -2,6 +2,7 @@ import { mutation, query } from "./_generated/server";
 import {
   createIssueArgs,
   getIssueArgs,
+  removeIssueArgs,
   updateIssueStatusArgs,
 } from "./validators";
 
@@ -32,5 +33,12 @@ export const updateStatus = mutation({
   handler: async (ctx, args) => {
     const { id, status } = args;
     await ctx.db.patch(id, { status });
+  },
+});
+
+export const remove = mutation({
+  args: removeIssueArgs,
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.id);
   },
 });

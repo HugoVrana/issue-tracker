@@ -1,0 +1,41 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "issue-tracker",
+  "title": "Issue Tracker",
+  "description": "Manage issues from Raycast",
+  "icon": "icon.png",
+  "author": "hugvrana",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "list-issues",
+      "title": "List Issues",
+      "description": "View and manage issues",
+      "mode": "view"
+    },
+    {
+      "name": "create-issue",
+      "title": "Create Issue",
+      "description": "Create a new issue",
+      "mode": "view"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.0.0",
+    "@raycast/utils": "^1.0.0",
+    "@workspace/db": "workspace:*",
+    "@workspace/models": "workspace:*",
+    "convex": "^1.36.0"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^1.0.0",
+    "remixicon": "^4.9.1",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "build": "ray build",
+    "dev": "ray develop",
+    "lint": "ray lint",
+    "publish": "npx @raycast/api@latest publish"
+  }
+}

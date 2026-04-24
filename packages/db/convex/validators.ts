@@ -17,6 +17,10 @@ export const getIssueArgs = {
   id: v.id("issues"),
 };
 
+export const removeIssueArgs = {
+  id: v.id("issues"),
+};
+
 export type CreateIssueDto = ObjectType<typeof createIssueArgs>;
 export type UpdateIssueStatusDto = ObjectType<typeof updateIssueStatusArgs>;
 export type GetIssueDto = ObjectType<typeof getIssueArgs>;
