@@ -5,6 +5,9 @@
   "scripts": {
     "build": "turbo build",
     "dev": "doppler run -- turbo dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:raycast": "pnpm --filter issue-tracker dev",
+    "dev:all": "pnpm dev:web & pnpm dev:raycast",
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck"
