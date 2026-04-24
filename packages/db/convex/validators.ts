@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { ObjectType } from "convex/values";
+import type { ObjectType } from "convex/values";
 import { zodToConvex } from "convex-helpers/server/zod";
 import { IssueStatusSchema } from "@workspace/models/issue/issueStatus";
 
