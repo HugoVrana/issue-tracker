@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "convex" : "npx convex dev"
+    "convex" : "doppler run -- npx convex dev"
   },
   "dependencies": {
     "@workspace/models": "workspace:*",

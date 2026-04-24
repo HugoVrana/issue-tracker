@@ -1,0 +1,3 @@
+setup:
+  project: issue-tracker
+  config: dev

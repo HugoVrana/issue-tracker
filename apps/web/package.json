@@ -4,12 +4,15 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "doppler run -- vite",
     "build": "tsc -b && vite build",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "doppler:run": "doppler run -- vite",
+    "doppler:pull": "doppler secrets download --no-file --format env-no-quotes > .env.local",
+    "doppler:debug": "doppler run -- node --inspect node_modules/.bin/vite"
   },
   "dependencies": {
     "@remixicon/react": "^4.9.0",
