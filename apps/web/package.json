@@ -13,7 +13,11 @@
   },
   "dependencies": {
     "@remixicon/react": "^4.9.0",
+    "@workspace/db": "workspace:*",
+    "@workspace/models": "workspace:*",
     "@workspace/ui": "workspace:*",
+    "cmdk": "^1.1.1",
+    "convex": "^1.24.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },

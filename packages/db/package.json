@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "convex" : "npx convex dev"
   },
   "dependencies": {
     "@workspace/models": "workspace:*",
@@ -13,5 +14,8 @@
   },
   "devDependencies": {
     "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": "./index.ts"
   }
 }
