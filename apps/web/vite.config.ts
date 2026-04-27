@@ -12,6 +12,6 @@ export default defineConfig({
     },
   },
   define: {
-    "import.meta.env.VITE_CONVEX_URL": JSON.stringify(process.env.CONVEX_URL),
+    "import.meta.env.VITE_CONVEX_URL": JSON.stringify(process.env.CONVEX_SITE_URL),
   },
 })

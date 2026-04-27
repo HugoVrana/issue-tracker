@@ -1,7 +1,7 @@
 import {
   Action,
   ActionPanel,
-  Color,
+  Detail,
   environment,
   Icon,
   List,
@@ -9,28 +9,22 @@ import {
   Toast,
 } from "@raycast/api";
 import { useCachedPromise } from "@raycast/utils";
-import { api } from "@workspace/db";
+import { api, type Doc, type Id } from "@workspace/db";
 import type { IssueStatus } from "@workspace/models/issue/issueStatus";
 import { client } from "./convex-client";
 import { CreateIssueForm } from "./create-issue";
 
-const STATUS: Record<IssueStatus, { label: string; icon: Icon; color: Color }> = {
-  open: { label: "Open", icon: Icon.Circle, color: Color.Blue },
-  in_progress: { label: "In Progress", icon: Icon.Clock, color: Color.Yellow },
-  closed: { label: "Closed", icon: Icon.CheckCircle, color: Color.Green },
-};
+const ALL_STATUSES : IssueStatus[] = ["open", "in_progress", "closed"];
 
-const ALL_STATUSES = Object.keys(STATUS) as IssueStatus[];
-
-export default function ListIssues() {
-  const { data: issues, isLoading, revalidate } = useCachedPromise(() =>
-    client.query(api.issues.list)
+export default function ListIssues(){
+  const { data: issues, isLoading, error, revalidate } = useCachedPromise(
+    () => client.query(api.issues.list, {}) as Promise<Doc<"issues">[]>
   );
 
-  async function handleUpdateStatus(id: string, status: IssueStatus) {
+  async function handleUpdateStatus(id: Id<"issues">, status: IssueStatus) {
     const toast = await showToast({ style: Toast.Style.Animated, title: "Updating status…" });
     try {
-      await client.mutation(api.issues.updateStatus, { id: id as never, status });
+      await client.mutation(api.issues.updateStatus, { id, status });
       toast.style = Toast.Style.Success;
       toast.title = "Status updated";
       revalidate();
@@ -40,10 +34,10 @@ export default function ListIssues() {
     }
   }
 
-  async function handleDelete(id: string) {
+  async function handleDelete(id: Id<"issues">) {
     const toast = await showToast({ style: Toast.Style.Animated, title: "Deleting issue…" });
     try {
-      await client.mutation(api.issues.remove, { id: id as never });
+      await client.mutation(api.issues.remove, { id });
       toast.style = Toast.Style.Success;
       toast.title = "Issue deleted";
       revalidate();
@@ -53,25 +47,27 @@ export default function ListIssues() {
     }
   }
 
+  if (error) {
+    return <Detail markdown={`**Error loading issues**\n\n\`\`\`\n${error.message}\n\`\`\``} />;
+  }
+
   return (
     <List isLoading={isLoading} navigationTitle={environment.isDevelopment ? "Issues (Dev)" : "Issues"}>
       {issues?.map((issue) => {
-        const { label, icon, color } = STATUS[issue.status];
         return (
           <List.Item
             key={issue._id}
-            icon={{ source: icon, tintColor: color }}
+            icon={Icon.Circle}
             title={issue.title}
             subtitle={issue.description}
-            accessories={[{ tag: { value: label, color } }]}
+            accessories={[{ tag: issue.status }]}
             actions={
               <ActionPanel>
                 <ActionPanel.Section title="Status">
                   {ALL_STATUSES.filter((s) => s !== issue.status).map((s) => (
                     <Action
                       key={s}
-                      title={`Mark as ${STATUS[s].label}`}
-                      icon={{ source: STATUS[s].icon, tintColor: STATUS[s].color }}
+                      title={`Mark as ${s}`}
                       onAction={() => handleUpdateStatus(issue._id, s)}
                     />
                   ))}

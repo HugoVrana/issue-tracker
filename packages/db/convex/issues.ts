@@ -6,8 +6,11 @@ import {
   updateIssueStatusArgs,
 } from "./validators";
 
-export const list = query(async (ctx) => {
-  return await ctx.db.query("issues").order("desc").collect();
+export const list = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("issues").order("desc").collect();
+  },
 });
 
 export const get = query({

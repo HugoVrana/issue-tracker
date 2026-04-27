@@ -1,6 +1,12 @@
 import { ConvexClient } from "convex/browser";
+import WebSocket from "ws";
 
-const url = process.env.CONVEX_URL;
-if (!url) throw new Error("CONVEX_URL is not set");
+// Raycast runs in Node.js which has no global WebSocket — polyfill for Convex
+if (!globalThis.WebSocket) {
+  // @ts-ignore
+  globalThis.WebSocket = WebSocket;
+}
+
+const url = "https://shiny-grouse-827.convex.cloud";
 
 export const client = new ConvexClient(url);

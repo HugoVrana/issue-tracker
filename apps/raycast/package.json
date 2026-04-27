@@ -23,18 +23,23 @@
   "dependencies": {
     "@raycast/api": "^1.0.0",
     "@raycast/utils": "^1.0.0",
+    "ws": "^8.0.0",
     "@workspace/db": "workspace:*",
     "@workspace/models": "workspace:*",
-    "convex": "^1.36.0"
+    "convex": "^1.36.0",
+    "react": "^19.2.5"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^1.0.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "remixicon": "^4.9.1",
     "typescript": "^5.9.3"
   },
   "scripts": {
+    "doppler:pull": "doppler secrets download --config dev_personal --no-file --format env-no-quotes > ~/.config/raycast/extensions/issue-tracker/.env",
     "build": "ray build",
-    "dev": "ray develop",
+    "dev": "pnpm doppler:pull && ray develop",
     "prod": "ray build",
     "lint": "ray lint",
     "publish": "npx @raycast/api@latest publish"
