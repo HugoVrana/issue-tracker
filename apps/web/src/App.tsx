@@ -52,7 +52,6 @@ function IssueApp() {
           <span className="font-semibold text-sm">Issue Tracker</span>
         </div>
         <CommandBar issues={issues} />
-        <a>hello</a>
       </div>
     </div>
   )
