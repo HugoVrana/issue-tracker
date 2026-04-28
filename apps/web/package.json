@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "doppler run -- vite",
-    "build": "tsc -b && doppler run --config prd -- vite build",
+    "build": "tsc -b && (command -v doppler && doppler run --config prd -- vite build || vite build)",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
